@@ -83,6 +83,23 @@ class Transaction extends BaseModel {
 
   // -----
 
+  static get filters() {
+   return {
+     description: {
+       code: 'description',
+       display: (item) => `Description: ${item}`,
+       filter: (item) => `description_contains:"${item}"`,
+     },
+     type: {
+       code: 'type',
+       display: (item) => `Type: ${get(item, 'name')}`,
+       filter: (item) => `type:"${get(item, 'fireflyCode')}"`,
+     },
+   }
+  }
+
+  // -----
+
   static getAmount(transaction) {
     let transactionSplits = _.get(transaction, 'attributes.transactions', [])
     return transactionSplits.reduce((result, item) => {
