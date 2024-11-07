@@ -1,8 +1,4 @@
 #!/bin/sh
-
-if [ "$DB_CONNECTION" == "sqlite" ]; then
-    echo "Using a SQLite database"
-else
     while true; do
         # Check if $DB_HOST is a Unix socket (starts with "/")
         if echo "$DB_HOST" | grep -q "^/"; then
